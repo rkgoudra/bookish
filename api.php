@@ -15,29 +15,7 @@ switch($flag)
     case 2:
     break;
     //book_table insert query
-    case 3:$book_title=$_POST['title'];
-           $book_image=$_POST['image'];
-           $book_auth_name=$_POST['authorName'];
-           $book_language=$_POST['language'];
-           $book_gener=$_POST['gener'];
-           $book_status=$_POST['status'];
-           $book_description=$_POST['description'];
-                $sql="INSERT INTO `book_table`(`title`, `image`, `author_name`, `language`, `gener`, `status`, `description`) 
-                VALUES ('$book_title','$book_image','$book_auth_name','$book_language','$book_gener','$book_status','$book_description') ";
-                        $res=mysqli_query($con,$sql);
-                                if($res){
-                                //echo "inserted sucessfully";
-                                $results2['status']=1;
-                                $results2['message']="inserted successfull";
-                                array_push($results,$results2);
-                                echo json_encode($results);
-                                }else{
-                                //echo "failed to insert";
-                                $results2['status']=-1;
-                                $results2['message']="insert failed";
-                                array_push($results,$results2);
-                                echo json_encode($results);
-                                }
+    case 3:
     break;
     //insert query to lent_book table
     case 4:$book_id=$_POST['book_id'];
