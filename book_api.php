@@ -28,14 +28,25 @@ switch($flag){
                          array_push($results,$results2);
                          echo json_encode($results);
     break;
-    
+
     //select query 
     case 2:$user_id=$_POST['uid'];
-           $sql="SELECT * FROM `book_table` WHERE user_id='$user_id'";
+           $sql="SELECT * FROM `book_table` WHERE user_id='$user_id' and delet_status=1";
            $res=mysqli_query($con,$sql);
          while($row=mysqli_fetch_assoc($res)){
-          echo $row['title'];   
-         }                
+          //echo $row['title'];
+          $results2['title']=$row['title'];
+          $results2['image']=$row['image'];
+          $results2['author_name']=$row['author_name'];
+          $results2['language']=$row['language'];
+          $results2['gener']=$row['gener'];
+          $results2['status']=$row['status'];
+          $results2['description']=$row['description'];
+          $results2['user_id']=$row['user_id'];
+          array_push($results,$results2); 
+        }
+        echo json_encode($results);
+
     break;
     
     //update query
