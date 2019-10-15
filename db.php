@@ -10,6 +10,5 @@ if($con)
 }
 else{
     echo "something went wrong..";
-}
-
+}.
 ?>
