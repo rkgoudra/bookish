@@ -29,7 +29,7 @@ switch($flag){
             echo json_encode($results); 
 
 break;
-//select
+//select query
     case 2:$user_id=$_POST['uid'];
            $sql="SELECT * FROM `borrowed_books` WHERE `user_id`='$user_id'";
            $res=mysqli_query($con,$sql);
