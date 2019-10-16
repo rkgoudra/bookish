@@ -81,8 +81,7 @@ switch($flag){
 case 4: $book_id=$_POST['bid'];
      $sql="UPDATE `book_table` SET `delet_status`= 0 WHERE `book_id`='$book_id'"; 
      $res=mysqli_query($con,$sql);
-     if($res)
-{
+     if($res){
     //echo "inserted sucessfully";
     $results2['status']=1;
     $results2['message']="delete successfull";
