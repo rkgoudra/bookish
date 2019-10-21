@@ -3,7 +3,7 @@ require 'db.php';
 $results=array();
 $flag=$_POST['flag'];
 switch($flag){
-    //select query for lent_book
+    //insert query for lent_book
     case 1:$book_id=$_POST['book_id'];
            $lent_date=$_POST['date'];
            $lent_to=$_POST['lent_to'];

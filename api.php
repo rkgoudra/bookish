@@ -12,52 +12,37 @@ switch($flag)
     case 1:
     break; 
     //Register table Insert query
-    case 2:
-    break;
-    //book_table insert query
-    case 3:
-    break;
-    //insert query to lent_book table
-    case 4:$book_id=$_POST['book_id'];
-           $lent_Date=$_POST['date'];
-           $lent_To=$_POST['lent_to'];
-           $phone_Number=$_POST['phno'];
-           $book_Return_staus=$_POST['retunStatus'];
-           $due_Date=$_POST['due_date'];
-               $sql="INSERT INTO `lent_books`(`book_id`, `date`, `lent_to`, `phone_no`, `book_return_status`, `due_date`) 
-               VALUES ('$book_id','$lent_Date','$lent_To','$phone_Number','$book_Return_staus','$due_Date') ";
-                    $res=mysqli_query($con,$sql);
-                    if($res){
-                        $results2['status']=1;
-                        $results2['message']="inserted successfull";
-                        array_push($results,$results2);
-                        echo json_encode($results); 
-                    }else{
-                        $results2['status']=-1;
-                                $results2['message']="insert failed";
-                                array_push($results,$results2);
-                                echo json_encode($results);
-                    }    
-    break;
-    //insert query to Gener_master
-    case 5:$gener_Name=$_POST['generName'];
-           $gener_State=$_POST['status'];
-           $sql="INSERT INTO `gener_master` (`gener_name`, `gener_status`) 
-           VALUES ('$gener_Name','$gener_State')";
-           $res=mysqli_query($con,$sql);
-           if($res){
-               $results2['status']=1;
-               $results2['message']="insert successfull";
-               array_push($results,$results2);
-               echo json_encode($results);
-           }else{
+    case 2: $first_name=$_POST['fname'];
+    $last_name=$_POST['lname'];
+    $email_id=mysqli_real_escape_string($con,$_POST['mail']);
+    $password=md5($_POST['pwd']);
+    $phone_no=$_POST['phno'];
+   // $status=$_POST['status'];
+    $gender=$_POST['gender'];     
+     $sql1 = "SELECT `email_id`, `phone_no` FROM `register` WHERE `email_id`='$email_id' or `phone_no`='$phone_no'" ;
+     $res=mysqli_query($con,$sql1);
+     if (mysqli_num_rows($res) == 0) {
+      $sql="INSERT INTO `register` (`first_name`, `last_name`, `email_id`, `password`, `phone_no`, `status`, 
+        `gender`) VALUES ('$first_name','$last_name','$email_id','$password','$phone_no',1,'$gender')";
+         $res1=mysqli_query($con,$sql);
+         if($res1){
+            //echo "inserted sucessfully";
+            $results2['status']=1;
+            $results2['message']="inserted successfull";
+            }else{
+            //echo "failed to insert";
             $results2['status']=-1;
             $results2['message']="insert failed";
-            array_push($results,$results2);
-            echo json_encode($results);
-           }          
+            }  
+     }else{
+        $results2['status']=0;
+        $results2['message']="email or mobile Number found";
+        }
+        array_push($results,$results2);
+        echo json_encode($results); 
+    
     break;
-
+    
     default: echo "default case";
     break;
 
