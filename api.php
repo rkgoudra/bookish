@@ -9,7 +9,23 @@ $flag=$_POST['flag'];
 switch($flag)
 {
     //login chcek query
-    case 1:
+    case 1:$email_id=$_POST['mail'];
+           $password=md5($_POST['pwd']);
+           $sql="SELECT * FROM `register` WHERE `email_id`='$email_id' and `password`='$password'";
+           $res=mysqli_query($con,$sql);
+           if(mysqli_num_rows($res)>=1){
+               while($row=mysqli_fetch_assoc($res)){
+                $results2['status']=1;
+                $results2['user_id']=$row['id'];
+                $results2['message']="Welcome,".$row['first_name'];
+               }
+           }else{
+            $results2['status']=-1;
+            $results2['user_id']=0;
+            $results2['message']="login failed";   
+        }
+        array_push($results,$results2);
+        echo json_encode($results); 
     break; 
     //Register table Insert query
     case 2: $first_name=$_POST['fname'];
