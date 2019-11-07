@@ -17,15 +17,17 @@ switch($flag)
                while($row=mysqli_fetch_assoc($res)){
                 $results2['status']=1;
                 $results2['user_id']=$row['id'];
-                $results2['message']="Welcome,".$row['first_name'];
+                $results2['user_name']=$row['first_name'];
+                $results2['email']=$row['email_id'];
+                $results2['message']="Welcome,".strtoupper($row['first_name']);
                }
            }else{
             $results2['status']=-1;
             $results2['user_id']=0;
             $results2['message']="login failed";   
         }
-        array_push($results,$results2);
-        echo json_encode($results); 
+        //array_push($results,$results2);
+        echo json_encode($results2); 
     break; 
     //Register table Insert query
     case 2: $first_name=$_POST['fname'];
@@ -44,11 +46,11 @@ switch($flag)
          if($res1){
             //echo "inserted sucessfully";
             $results2['status']=1;
-            $results2['message']='inserted successfull';
+            $results2['message']='Registration Done';
             }else{
             //echo "failed to insert";
             $results2['status']=-1;
-            $results2['message']='insert failed';
+            $results2['message']='Registration failed';
             }  
      }else{
         $results2['status']=0;
