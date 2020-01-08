@@ -12,9 +12,9 @@ switch($flag){
     $book_status=$_POST['status'];
     $book_description=$_POST['description'];
     $user_id=$_POST['uid'];
-    
-         $sql="INSERT INTO `book_table`(`title`, `image`, `author_name`, `language`, `gener`, `status`, `description`,`user_id`,`delete_status`) 
-         VALUES ('$book_title','$book_image','$book_auth_name','$book_language','$book_gener','$book_status','$book_description','$user_id',1) ";
+    $isbn=$_POST['isbn'];
+          $sql="INSERT INTO `book_table`(`title`, `image`, `author_name`, `language`, `gener`, `status`, `description`,`user_id`,`delet_status`,`isbn`) 
+         VALUES ('$book_title','$book_image','$book_auth_name','$book_language','$book_gener','$book_status','$book_description','$user_id',1,'$isbn') ";
                  $res=mysqli_query($con,$sql);
                          if($res){
                          //echo "inserted sucessfully";
